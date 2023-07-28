@@ -1,4 +1,4 @@
-package org.verizon.VerizonSP;
+package com.verizon.VerizonSP;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

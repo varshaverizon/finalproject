@@ -1,0 +1,5 @@
+FROM openjdk:17-jdk-slim-buster
+ARG JAR_FILE=target/VerisonSP.jar
+COPY ./target/VerizonSP.jar verizonsp.jar
+EXPOSE 8091
+ENTRYPOINT ["java","-jar","/verizonsp.jar"]

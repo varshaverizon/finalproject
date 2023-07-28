@@ -1,4 +1,4 @@
-package org.verizon.VerizonSP.model;
+package com.verizon.VerizonSP.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,12 +10,18 @@ import jakarta.persistence.Id;
 public class CatalogModel {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int plan_id;
 	private String plan;
+	private String description;
 	private int price;
 	private String duration;
 	
+	
+	public CatalogModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public int getPlan_id() {
 		return plan_id;
 	}
@@ -27,6 +33,13 @@ public class CatalogModel {
 	}
 	public void setPlan(String plan) {
 		this.plan = plan;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public int getPrice() {
 		return price;

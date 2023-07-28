@@ -1,4 +1,4 @@
-package org.verizon.VerizonSP;
+package com.verizon.VerizonSP;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
