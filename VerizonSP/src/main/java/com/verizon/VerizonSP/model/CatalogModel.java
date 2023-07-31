@@ -1,9 +1,13 @@
 package com.verizon.VerizonSP.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 
@@ -12,11 +16,12 @@ public class CatalogModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int plan_id;
+	@ManyToOne
+	@JoinColumn(name="order_id")
+	private CatalogModel catalogmodel;
 	private String plan;
-	private String description;
 	private int price;
 	private String duration;
-	
 	
 	public CatalogModel() {
 		super();
@@ -34,13 +39,6 @@ public class CatalogModel {
 	public void setPlan(String plan) {
 		this.plan = plan;
 	}
-	
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	public int getPrice() {
 		return price;
 	}
@@ -53,7 +51,7 @@ public class CatalogModel {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-
+	
 	
 
 }

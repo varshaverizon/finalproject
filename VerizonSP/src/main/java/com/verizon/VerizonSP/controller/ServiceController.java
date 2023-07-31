@@ -3,32 +3,38 @@ package com.verizon.VerizonSP.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.verizon.VerizonSP.model.ServiceModel;
-import com.verizon.VerizonSP.service.ServiceService;
+import com.verizon.VerizonSP.repo.ServiceRepo;
 
-@RestController
-@RequestMapping("/api/service")
+@Controller
+@RequestMapping("/service")
 public class ServiceController 
 {
-	private ServiceService serviceservice;
+	private ServiceRepo servrepo;
 
 	@Autowired
-	public ServiceController(ServiceService serviceservice) {
-		this.serviceservice = serviceservice;
+	public ServiceController(ServiceRepo servrepo) {
+		this.servrepo=servrepo;
 	}
 
-	@RequestMapping("/allservice")
-	public List<ServiceModel> getAllServiceModel() {
-		return serviceservice.getAllServiceModel();
-
+	/*
+	 * @RequestMapping("/allservice") public List<ServiceModel> getAllServiceModel()
+	 * { return serviceservice.getAllServiceModel();
+	 * 
+	 * }
+	 */
+	@GetMapping("/create")
+	public String create(ServiceRepo servrepo) {
+		return "index";
 	}
-
-	@PostMapping("/insert")
-	public ServiceModel createservicemodel(@RequestBody ServiceModel servmod) {
-		return serviceservice.createservicemodel(servmod);
+	@PostMapping("/{service_id}")
+	public String save(ServiceModel servmod)
+	{
+		this.servrepo.save(servmod);
+		return "Service.html";
 	}
 }

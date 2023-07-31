@@ -24,4 +24,17 @@ public class EnCustService {
 	public EnCustModel createencustmodel(EnCustModel encustmod) {
 		return EnCustrepo.save(encustmod);
 	}
+	public EnCustModel updateEnCustModel(Integer plan_id, EnCustModel encust)
+	{
+		EnCustModel existingEnCustModel= EnCustrepo.findById(plan_id).orElse(null);
+		if(existingEnCustModel !=null)
+		{
+			existingEnCustModel.setEc_id(encust.getEc_id());
+			existingEnCustModel.setEc_name(encust.getEc_name());
+			existingEnCustModel.setDuration(encust.getDuration());
+			existingEnCustModel.setPrice(encust.getPrice());
+			return EnCustrepo.save(existingEnCustModel);
+		}
+		return null;
+}
 }

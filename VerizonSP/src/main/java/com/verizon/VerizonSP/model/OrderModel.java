@@ -1,7 +1,7 @@
 package com.verizon.VerizonSP.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 @Entity
 
@@ -9,40 +9,26 @@ public class OrderModel
 {
 
 			@Id
+			private int Plan_id;
 			@ManyToOne
-			@JoinTable(name="plan_id")
-			private CatalogModel catalogmodel;
-			
+			@JoinColumn(name="order_id")
+			private OrderModel ordermodel;
 			private String Order_name;
-			private int Order_id;
-			
+						
 			public OrderModel() {
 				super();
 			}
-			
-			
-			public CatalogModel getCatalogmodel() {
-				return catalogmodel;
+			public int getPlanid() {
+				return Plan_id;
 			}
-
-
-			public void setCatalogmodel(CatalogModel catalogmodel) {
-				this.catalogmodel = catalogmodel;
+			public void setPlanid(int Planid) {
+				this.Plan_id = Planid;
 			}
-
-
 			public String getPlan() {
 				return Order_name;
 			}
 			public void setPlan(String Order_name) {
 				this.Order_name = Order_name;
 			}
-			public int getPrice() {
-				return Order_id;
-			}
-			public void setPrice(int Order_id) {
-				this.Order_id = Order_id;
-			}
-			
 			
 	}

@@ -10,13 +10,11 @@ public class ServiceModel
 {
 	@Id
 	private int service_id;
-	private String Provision;
-	private String Test_qos;
 	@ManyToOne
-	@JoinColumn(name="plan_id")
-	private CatalogModel catalogmodel;
+	@JoinColumn(name="order_id")
+	private ServiceModel servicemodel;
+	private String Provision;
 	private String Activity;
-	
 	public ServiceModel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -27,30 +25,25 @@ public class ServiceModel
 	public void setService_id(int service_id) {
 		this.service_id = service_id;
 	}
+	public ServiceModel getServicemodel() {
+		return servicemodel;
+	}
+	public void setServicemodel(ServiceModel servicemodel) {
+		this.servicemodel = servicemodel;
+	}
 	public String getProvision() {
 		return Provision;
 	}
 	public void setProvision(String provision) {
 		Provision = provision;
 	}
-	public String getTest_qos() {
-		return Test_qos;
-	}
-	public void setTest_qos(String test_qos) {
-		Test_qos = test_qos;
-	}
-	public CatalogModel getCatalogmodel() {
-		return catalogmodel;
-	}
-	public void setCatalogmodel(CatalogModel catalogmodel) {
-		this.catalogmodel = catalogmodel;
-	}
-	public String getActivity() {
+		public String getActivity() {
 		return Activity;
 	}
 	public void setActivity(String activity) {
 		Activity = activity;
 	}
+	
 	
 	
 }

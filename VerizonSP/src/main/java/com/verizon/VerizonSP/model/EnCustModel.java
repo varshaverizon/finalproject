@@ -2,18 +2,24 @@ package com.verizon.VerizonSP.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class EnCustModel {
 	@Id
 	private int ec_id;
+	@ManyToOne
+	@JoinColumn(name="order_id")
+	private EnCustModel encustmodel;
 	private String ec_name;
 	private String order_name;
-	private int order_id;
 	private String duration;
 	private int ec_price;
+
 	
 	public EnCustModel() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,14 +47,7 @@ public class EnCustModel {
 		this.order_name = order_name;
 	}
 
-	public int getOrder_id() {
-		return order_id;
-	}
-
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
-	}
-
+	
 	public String getDuration() {
 		return duration;
 	}
@@ -57,14 +56,12 @@ public class EnCustModel {
 		this.duration = duration;
 	}
 
-	public int getEc_price() {
+	public int getPrice() {
 		return ec_price;
 	}
 
-	public void setEc_price(int ec_price) {
+	public void setPrice(int ec_price) {
 		this.ec_price = ec_price;
 	}
-
-	
 
 }

@@ -3,33 +3,38 @@ package com.verizon.VerizonSP.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.verizon.VerizonSP.model.CustomerModel;
-import com.verizon.VerizonSP.service.CustomerService;
+import com.verizon.VerizonSP.repo.CustomerRepo;
 
-@RestController
-@RequestMapping("/api/customer")
+@Controller
+@RequestMapping("/consumer/customers")
 public class CustomerController 
 {
-	private CustomerService customerservice;
+	private CustomerRepo custrepo;
 
 	@Autowired
-	public CustomerController(CustomerService customerservice) {
-		this.customerservice = customerservice;
+	public CustomerController(CustomerRepo custrepo) {
+		this.custrepo=custrepo;
 	}
 
-	@RequestMapping("/allcustomer")
-	public List<CustomerModel> getAllCustomerModel() {
-		return customerservice.getAllCustomerModel();
-
+	/*
+	 * @RequestMapping("/allcustomer") public List<CustomerModel>
+	 * getAllCustomerModel() { return customerservice.getAllCustomerModel();
+	 * 
+	 * }
+	 */
+	@GetMapping("/create/customer")
+	public String create (CustomerModel custmod) {
+		return "index";
 	}
-
-	@PostMapping("/insert")
-	public CustomerModel createcustomermodel(@RequestBody CustomerModel customermod) {
-		return customerservice.createcustomermodel(customermod);
+	@PostMapping("/{plan_id}")
+	public String save(CustomerModel custmod)
+	{	this.custrepo.save(custmod);
+		return "customer.html";
 	}
 }
 

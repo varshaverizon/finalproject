@@ -2,15 +2,18 @@ package com.verizon.VerizonSP.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class CustomerModel 
 {
 	@Id
 	private int cust_id;
-	
+	@ManyToOne
+	@JoinColumn(name="order_id")
+	private CustomerModel customermodel;
 	private String cust_name;
-	private int order_id;
 	private String order_name;
 	
 	public CustomerModel() {
@@ -28,12 +31,6 @@ public class CustomerModel
 	}
 	public void setCust_name(String cust_name) {
 		this.cust_name = cust_name;
-	}
-	public int getOrder_id() {
-		return order_id;
-	}
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
 	}
 	public String getOrder_name() {
 		return order_name;

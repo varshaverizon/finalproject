@@ -25,18 +25,18 @@ public class CatalogService {
 	public CatalogModel createcatalogmodel(CatalogModel catmod) {
 		return catalogrepo.save(catmod);
 	}
-	public CatalogModel updateCatalogModel(Integer id, CatalogModel cata) {
-		CatalogModel existingCatalogModel=catalogrepo.findById(id).orElse(null);
-	if (existingCatalogModel !=null)
+	public CatalogModel updateCatalogModel(Integer plan_id, CatalogModel cata)
 	{
-		existingCatalogModel.setPlan(cata.getPlan());
-		existingCatalogModel.setDuration(cata.getDuration());
-		existingCatalogModel.setPrice(cata.getPrice());
-		existingCatalogModel.setDescription(cata.getDescription());
-		return catalogrepo.save(existingCatalogModel);
-	}
-	
-	return null;
+		CatalogModel existingCatalogModel= catalogrepo.findById(plan_id).orElse(null);
+		if(existingCatalogModel !=null)
+		{
+			existingCatalogModel.setPlan(cata.getPlan());
+			existingCatalogModel.setDuration(cata.getDuration());
+			existingCatalogModel.setPrice(cata.getPrice());
+			return catalogrepo.save(existingCatalogModel);
+		}
+		return null;
+		
 	}
 	public void deleteCatalogModel(Integer plan_id)
 	{

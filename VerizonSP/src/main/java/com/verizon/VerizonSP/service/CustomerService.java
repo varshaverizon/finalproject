@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.verizon.VerizonSP.model.CustomerModel;
 import com.verizon.VerizonSP.repo.CustomerRepo;
 
@@ -26,4 +25,15 @@ public class CustomerService {
 	public CustomerModel createcustomermodel(CustomerModel customermod) {
 		return customerrepo.save(customermod);
 	}
+	public CustomerModel updateCustomerModel(Integer Cust_id, CustomerModel cust)
+	{
+		CustomerModel existingCustomerModel= customerrepo.findById(Cust_id).orElse(null);
+		if(existingCustomerModel !=null)
+		{
+			existingCustomerModel.setCust_name(cust.getCust_name());
+			existingCustomerModel.setCust_id(cust.getCust_id());
+			return customerrepo.save(existingCustomerModel);
+		}
+		return null;
+}
 }

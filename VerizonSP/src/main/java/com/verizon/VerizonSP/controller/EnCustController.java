@@ -3,35 +3,41 @@ package com.verizon.VerizonSP.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.verizon.VerizonSP.model.EnCustModel;
-import com.verizon.VerizonSP.service.EnCustService;
+import com.verizon.VerizonSP.repo.EnCustRepo;
 
-@RestController
-@RequestMapping("/api/encustmodel")
+@Controller
+@RequestMapping("/encustmodel")
 public class EnCustController
 
 {
-	private EnCustService encustservice;
+	private EnCustRepo ecrepo ;
 
 	@Autowired
-	public EnCustController(EnCustService encustservice) {
-		this.encustservice = encustservice;
+	public EnCustController(EnCustRepo ecrepo) {
+		this.ecrepo=ecrepo;
 	}
 
-	@RequestMapping("/allcust")
-	public List<EnCustModel> getAllEnCustModel() {
-		return encustservice.getAllEnCustModel();
-
+	/*
+	 * @RequestMapping("/allcust") public List<EnCustModel> getAllEnCustModel() {
+	 * return encustservice.getAllEnCustModel();
+	 * 
+	 * }
+	 */
+	@GetMapping("/createECCustomer")
+	public String create(EnCustModel encustmod)
+	{
+		return "index";
+	}
+	@PostMapping("/{plan_id}")
+	public String save(EnCustModel encustmod)
+	{
+		this.ecrepo.save(encustmod);
+		return "ECCustomer.html";
 	}
 
-	@PostMapping("/insert")
-	public EnCustModel createencustmodel(@RequestBody EnCustModel encustmod) {
-		return encustservice.createencustmodel(encustmod);
-	}
-	
-	
 }

@@ -21,12 +21,20 @@ public class Orderservice
 		return orderRepo.findAll();
 	}
 
-	public OrderModel getOrderById(Integer id)
-	{
-		return orderRepo.findById(id).orElse(null);
-	}
 	public OrderModel createordermodel(OrderModel OrderModel) {
 		return orderRepo.save(OrderModel);
 	}
-
+	public OrderModel updateOrderModel(Integer plan_id, OrderModel od)
+	{
+		OrderModel existingOrderModel= orderRepo.findById(plan_id).orElse(null);
+		if(existingOrderModel !=null)
+		{
+			existingOrderModel.setPlan(od.getPlan());
+			existingOrderModel.setPlanid(od.getPlanid());
+			return orderRepo.save(existingOrderModel);
+		}
+		return null;
+	
+	
+	}
 }
